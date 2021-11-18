@@ -192,8 +192,20 @@ public abstract class ZebraBarCode extends ZebraElement {
 
 	Font font = new Font("Arial", Font.BOLD, barCodeHeigth / 2);
 
+	Integer modWidth = moduleWidth;
+	
+	if(modWidth == null) {
+		modWidth = 2;
+	}
+	
+	Integer wBarRadio = wideBarRatio;
+	
+	if(wBarRadio == null) {
+		wBarRadio = 1;
+	}
+	
 	graphic.drawRect(left, top,
-		ZplUtils.convertPointInPixel(Math.round(moduleWidth * wideBarRatio * 9 * text.length())),
+		ZplUtils.convertPointInPixel(Math.round(modWidth * wBarRadio * 9 * text.length())),
 		ZplUtils.convertPointInPixel(barCodeHeigth));
 
 	drawTopString(graphic, font, text, left, top);

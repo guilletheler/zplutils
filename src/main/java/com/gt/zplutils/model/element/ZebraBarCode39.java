@@ -47,7 +47,7 @@ public class ZebraBarCode39 extends ZebraBarCode {
     @Override
     public String getZplCode() {
 	StringBuilder zpl = getStartZplCodeBuilder();
-	zpl.append(ZplUtils.zplCommandSautLigne("B3", getZebraRotation(), getBarCodeHeigth(), checkDigit43,
+	zpl.append(ZplUtils.zplCommandSautLigne("B3", getZebraRotation().getLetter(), checkDigit43, getBarCodeHeigth(),
 		isShowTextInterpretation(), isShowTextInterpretationAbove()));
 	zpl.append("^FD");
 	zpl.append(getText());

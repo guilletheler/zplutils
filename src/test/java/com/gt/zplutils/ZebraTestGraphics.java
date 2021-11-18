@@ -46,7 +46,9 @@ public class ZebraTestGraphics {
 
 	System.out.println(zebraLabel.getZplCode());
 
-	// BufferedImage image = zebraLabel.getImagePreview();
-	// ImageIO.write(image, "png", new File("zpl.graph"));
+		// BufferedImage image = zebraLabel.getImagePreview();
+		// ImageIO.write(image, "png", new File("zpl.graph"));
+	
+	
     }
 }
