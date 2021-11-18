@@ -1,4 +1,4 @@
-package com.gcem.zplutils;
+package com.gt.zplutils;
 
 import static org.junit.Assert.assertEquals;
 

@@ -1,4 +1,4 @@
-package com.gcem.zplutils.model.element;
+package com.gt.zplutils.model.element;
 
 import static org.junit.Assert.assertEquals;
 

@@ -8,7 +8,7 @@
  * Feb 04, 2017		Venkaiah Chowdary Koneru		Created
  * *************************************************************
  */
-package com.gcem.zplutils;
+package com.gt.zplutils;
 
 import static org.junit.Assert.assertTrue;
 

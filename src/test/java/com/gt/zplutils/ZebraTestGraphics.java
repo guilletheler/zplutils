@@ -1,4 +1,4 @@
-package com.gcem.zplutils;
+package com.gt.zplutils;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
