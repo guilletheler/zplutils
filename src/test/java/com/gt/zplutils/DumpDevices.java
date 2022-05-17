@@ -32,6 +32,7 @@ public class DumpDevices {
      * @param device
      *            The USB device to dump.
      */
+    @SuppressWarnings("unckecked")
     private static void dumpDevice(final UsbDevice device)
     {
         // Dump information about the device itself

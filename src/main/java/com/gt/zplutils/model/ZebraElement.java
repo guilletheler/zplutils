@@ -120,7 +120,6 @@ public abstract class ZebraElement {
      * Default draw a rectangle
      * 
      * @param printerOptions
-     *            TODO
      * @param graphic
      */
     public void drawPreviewGraphic(PrinterOptions printerOptions, Graphics2D graphic) {
