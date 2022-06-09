@@ -46,47 +46,47 @@ public abstract class ZebraElement {
      * @return the positionX
      */
     public int getPositionX() {
-	return positionX;
+        return positionX;
     }
 
     /**
      * @param positionX
-     *            the positionX to set
+     *                  the positionX to set
      */
     public ZebraElement setPositionX(int positionX) {
-	this.positionX = positionX;
-	return this;
+        this.positionX = positionX;
+        return this;
     }
 
     /**
      * @return the positionY
      */
     public int getPositionY() {
-	return positionY;
+        return positionY;
     }
 
     /**
      * @param positionY
-     *            the positionY to set
+     *                  the positionY to set
      */
     public ZebraElement setPositionY(int positionY) {
-	this.positionY = positionY;
-	return this;
+        this.positionY = positionY;
+        return this;
     }
 
     /**
      * @return the printerOptions
      */
     public PrinterOptions getPrinterOptions() {
-	return printerOptions;
+        return printerOptions;
     }
 
     /**
      * @param printerOptions
-     *            the printerOptions to set
+     *                       the printerOptions to set
      */
     public void setPrinterOptions(PrinterOptions printerOptions) {
-	this.printerOptions = printerOptions;
+        this.printerOptions = printerOptions;
     }
 
     /**
@@ -95,7 +95,7 @@ public abstract class ZebraElement {
      * @return
      */
     public String getZplCode() {
-	return "";
+        return "";
     }
 
     /**
@@ -106,11 +106,11 @@ public abstract class ZebraElement {
      */
     protected String getZplCodePosition() {
 
-	StringBuffer zpl = new StringBuffer("");
-	if (positionX != null && positionY != null) {
-	    zpl.append(ZplUtils.zplCommand("FT", positionX, positionY));
-	}
-	return zpl.toString();
+        StringBuffer zpl = new StringBuffer("");
+        if (positionX != null && positionY != null) {
+            zpl.append(ZplUtils.zplCommand("FT", positionX, positionY));
+        }
+        return zpl.toString();
     }
 
     /**
@@ -120,23 +120,23 @@ public abstract class ZebraElement {
      * Default draw a rectangle
      * 
      * @param printerOptions
-     *            TODO
+     *                       TODO
      * @param graphic
      */
     public void drawPreviewGraphic(PrinterOptions printerOptions, Graphics2D graphic) {
-	if (defaultDrawGraphic) {
-	    int top = 0;
-	    int left = 0;
-	    if (positionX != null) {
-		left = Math.round((positionX / printerOptions.getZebraPPP().getDotByMm()) * 10);
-	    }
-	    if (positionY != null) {
-		top = Math.round((positionY / printerOptions.getZebraPPP().getDotByMm()) * 10);
-	    }
-	    graphic.setColor(Color.BLACK);
-	    graphic.drawRect(left, top, 100, 20);
-	    drawTopString(graphic, new Font("Arial", Font.BOLD, 11), "Default", left, top);
-	}
+        if (defaultDrawGraphic) {
+            int top = 0;
+            int left = 0;
+            if (positionX != null) {
+                left = Math.round((positionX / printerOptions.getZebraPPP().getDotByMm()) * 10);
+            }
+            if (positionY != null) {
+                top = Math.round((positionY / printerOptions.getZebraPPP().getDotByMm()) * 10);
+            }
+            graphic.setColor(Color.BLACK);
+            graphic.drawRect(left, top, 100, 20);
+            drawTopString(graphic, new Font("Arial", Font.BOLD, 11), "Default", left, top);
+        }
     }
 
     /**
@@ -151,11 +151,11 @@ public abstract class ZebraElement {
      * @param positionY
      */
     protected void drawTopString(Graphics2D graphic, Font font, String text, int positionX, int positionY) {
-	graphic.setFont(font);
-	FontMetrics fm = graphic.getFontMetrics(font);
-	Rectangle2D rect = fm.getStringBounds(text, graphic);
-	int textHeight = (int) (rect.getHeight());
-	positionY = positionY + textHeight;
-	graphic.drawString(text, positionX, positionY); // Draw the string.
+        graphic.setFont(font);
+        FontMetrics fm = graphic.getFontMetrics(font);
+        Rectangle2D rect = fm.getStringBounds(text, graphic);
+        int textHeight = (int) (rect.getHeight());
+        positionY = positionY + textHeight;
+        graphic.drawString(text, positionX, positionY); // Draw the string.
     }
 }

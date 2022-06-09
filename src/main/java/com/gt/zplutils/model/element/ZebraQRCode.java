@@ -86,14 +86,24 @@ public class ZebraQRCode extends ZebraElement {
     private QRCodeDataInputMode inputMode = M;
     private QRCodeCharacterMode characterMode = A;
     private QRCodeErrorCorrection errorCorrection = STANDARD;
-
+    private int magnification;
     private String text;
 
     /**
      * @param text
      */
-    public ZebraQRCode(String text) {
-	this.text = text;
+    public ZebraQRCode(int positionX, int positionY, String text) {
+        this(positionX, positionY, 1, text);
+    }
+
+    /**
+     * @param text
+     */
+    public ZebraQRCode(int positionX, int positionY, int magnification, String text) {
+        this.setPositionX(positionX);
+        this.setPositionY(positionY);
+        this.magnification = magnification;
+        this.text = text;
     }
 
     /**
@@ -103,26 +113,29 @@ public class ZebraQRCode extends ZebraElement {
      */
     @Override
     public String getZplCode() {
-	StringBuilder zpl = new StringBuilder(ZplUtils.zplCommand(QR_CODE.getCode()));
-	zpl.append(zebraRotation.getLetter());
-	zpl.append(",");
-	zpl.append(model.getModel());
-	zpl.append(",");
-	zpl.append(","); // Leave blank for maginification factor
-	zpl.append(errorCorrection.getLetter());
-	zpl.append("\n");
-	zpl.append(ZplUtils.zplCommand(FIELD_DATA.getCode()));
-	zpl.append(errorCorrection.getLetter());
-	zpl.append(inputMode.name());
-	zpl.append(",");
+        StringBuilder zpl = new StringBuilder();
+        zpl.append(ZplUtils.zplCommand("FO", positionX, positionY));
+        zpl.append(ZplUtils.zplCommand(QR_CODE.getCode()));
+        zpl.append(zebraRotation.getLetter());
+        zpl.append(",");
+        zpl.append(model.getModel());
+        zpl.append(",");
+        zpl.append(magnification + "");
+        zpl.append(","); // Leave blank for maginification factor
+        zpl.append(errorCorrection.getLetter());
+        zpl.append("\n");
+        zpl.append(ZplUtils.zplCommand(FIELD_DATA.getCode()));
+        zpl.append(errorCorrection.getLetter());
+        zpl.append(inputMode.name());
+        zpl.append(",");
 
-	if (inputMode.equals(QRCodeDataInputMode.M)) {
-	    zpl.append(characterMode.name());
-	}
+        if (inputMode.equals(QRCodeDataInputMode.M)) {
+            zpl.append(characterMode.name());
+        }
 
-	zpl.append(text);
-	zpl.append(ZplUtils.zplCommandSautLigne(FIELD_SEPERATOR.name()));
+        zpl.append(text);
+        zpl.append(ZplUtils.zplCommandSautLigne(FIELD_SEPERATOR.getCode()));
 
-	return zpl.toString();
+        return zpl.toString();
     }
 }
